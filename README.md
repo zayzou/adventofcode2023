@@ -1,8 +1,6 @@
 # adventofcode2023
 Advent of Code 2023 Java Solutions ♨️
 
-Advent of Code Java Solutions
-
 This repository hosts my Java solutions for the Advent of Code challenges. Each day's problem is solved using Java, and the solutions are organized in a clear directory structure. This project serves as a learning and coding exercise to tackle the Advent of Code puzzles and showcase Java programming techniques.
 
 Table of Contents
