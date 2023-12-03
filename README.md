@@ -12,8 +12,7 @@ How to Run
 
 To execute a specific solution, navigate to the respective day's directory and compile and run the Java file.
 
-bash
-Copy code
+`
 javac Day1/Day1.java
-java Day1.Day1
+java Day1.Day1`
 Feel free to explore, contribute, and learn from these solutions. Happy coding and enjoy the Advent of Code challenges!
