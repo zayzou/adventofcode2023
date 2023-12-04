@@ -1,19 +1,14 @@
-package com.zayzou.day00;
+package com.zayzou.day01;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class Day01 {
 
     final static HashMap<String, String> digitsMap = new HashMap<>();
-    final static String FILE = "com/zayzou/day00/input.txt";
+    final static String FILE = "com/zayzou/day01/input.txt";
 
     static {
         digitsMap.put("one", "1");
