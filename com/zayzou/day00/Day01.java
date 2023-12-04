@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 public class Day01 {
 
     final static HashMap<String, String> digitsMap = new HashMap<>();
-    final static String FILE = "com/zayzou/day00/part2.txt";
+    final static String FILE = "com/zayzou/day00/input.txt";
 
     static {
         digitsMap.put("one", "1");
@@ -37,6 +37,7 @@ public class Day01 {
             String last = "";
             while ((line = br.readLine()) != null) {
                 final String l = line;
+                last="";
                 for (int i = 0; i < line.length(); i++) {
                     final int index = i;
                     if (Character.isDigit(line.charAt(i))) {
@@ -53,25 +54,30 @@ public class Day01 {
                     }
                 }
                 for (int i = line.length() - 1; i >= 0; i--) {
-                    final int index = i;
                     if (Character.isDigit(line.charAt(i))) {
                         last = String.valueOf(line.charAt(i));
                         break;
                     }
+
+                    for (Map.Entry<String, String> entry : digitsMap.entrySet()) {
+                        //                                two1nine      i=7-
+                        if ((i - entry.getKey().length() + 1) >= 0) {
+                            String substring = line.substring(i - entry.getKey().length() + 1, i + 1);
+                            if (substring.compareTo(entry.getKey()) == 0) {
+                                last = entry.getValue();
+                                break;
+                            }
+                        }
+
+                    }
+                    if (!last.isBlank()) {
+                        break;
+                    }
+
                 }
 
-                if (last.isBlank()) {
-                    int maxIndex = -1;
-                    for (Map.Entry<String, String> entry : digitsMap.entrySet()) {
-                        var number = entry.getKey();
-                        int index = line.lastIndexOf(number);
-                        if (maxIndex < index) {
-                            last = entry.getValue();
-                            maxIndex = index;
-                        }
-                    }
-                }
-                System.out.println(line + " -> " + first + "" + last);
+
+                System.out.println("calibration values : for "+line + " are " + first + "" + last);
                 sum += Integer.valueOf(first + "" + last);
             }
             System.out.println(sum);
