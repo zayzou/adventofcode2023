@@ -27,23 +27,45 @@ public class Day02 {
     public static void main(String[] args) {
         String currentLine = "";
         int sum = 0;
+
         try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
             while ((currentLine = br.readLine()) != null) {
                 int gameId = getGameId(currentLine);
                 String sets = getGameSets(currentLine);//3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
-                boolean isOk = theGameIsOk(sets);
-                System.out.println("Game id : #" + gameId + " is " + isOk);
-                if (isOk) {
-                    sum += gameId;
-                }
-
-
+                int powerOfSet = thePowerOfTheGame(sets);
+                System.out.println("Game id : #" + gameId + " power " + powerOfSet);
+                sum += powerOfSet;
             }
-
             System.out.println(sum);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+
+    public static int thePowerOfTheGame(String sets) {
+        String[] subSet = sets.split(";");///3 blue, 4 red
+        int minRed;
+        int minBlue;
+        int minGreen = minBlue = minRed = 0;
+        for (String s : subSet) {
+            String[] result = s.trim().split(",");//3 blue
+            for (String string : result) {
+                String[] s1 = string.trim().split(" ");//3
+                if ("blue".equals(s1[1])) {
+                    minBlue = Math.max(minBlue, Integer.parseInt(s1[0]));
+                }
+                if ("red".equals(s1[1])) {
+                    minRed = Math.max(minRed, Integer.parseInt(s1[0]));
+                }
+                if ("green".equals(s1[1])) {
+                    minGreen = Math.max(minGreen, Integer.parseInt(s1[0]));
+                }
+            }
+        }
+//        System.out.println(minRed + " " + minGreen + " " + minBlue);
+        return minRed * minGreen * minBlue;
     }
 
 
